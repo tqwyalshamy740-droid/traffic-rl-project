@@ -199,15 +199,4 @@ Engineer 4	Evaluation & reporting
 
 Q-Learning works as a strong baseline for understanding environment dynamics, while DQN significantly improves performance in more complex and continuous state spaces.
 
-
----
-
-📌 Tech Stack
-
-Python
-
-PyTorch
-
-NumPy
-
 Matplotlib
