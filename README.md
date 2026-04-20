@@ -1,138 +1,135 @@
-# 🚦 Traffic Signal Control using Reinforcement Learning
-
-![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?logo=pytorch&logoColor=white)
-![RL](https://img.shields.io/badge/Reinforcement%20Learning-DQN-green)
-![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+🚦 Traffic Signal Control using Reinforcement Learning
 
 A reinforcement learning project for optimizing traffic signal control at a single intersection using a two-stage approach:
 
-1. Tabular Q-Learning (baseline + analysis)
-2. Deep Q-Network (DQN) (advanced solution)
+- 🟡 Tabular Q-Learning (baseline + behavioral analysis)
+- 🔵 Deep Q-Network (DQN) (advanced scalable solution)
 
-Q-Learning was implemented first to build a baseline understanding of the environment and policy behavior, followed by a more advanced DQN model for improved performance and scalability.
-
+The goal is to minimize traffic congestion and average waiting time while maximizing throughput at a single intersection.
 
 ---
 
-📁 Project Structure
+## 🎯 Problem Statement
 
+Urban traffic congestion leads to increased waiting time, inefficiency, and pollution.  
+This project explores how reinforcement learning can dynamically control traffic signals to optimize flow without fixed timing rules.
+
+---
+
+## 🧠 Approach
+
+### 1️⃣ Q-Learning (Baseline Phase)
+
+Used as an initial approach to understand environment dynamics.
+
+*Key Features:*
+- Tabular Q-learning
+- Discretized state space
+- Epsilon-greedy exploration
+- Bellman equation updates
+- Policy extraction & visualization
+
+---
+
+### 2️⃣ Deep Q-Network (DQN) (Advanced Phase)
+
+Designed to handle continuous state space and improve scalability.
+
+*Key Features:*
+- Deep neural network approximation
+- Experience replay buffer
+- Target network updates
+- Double DQN stability improvements
+- Reward normalization
+
+---
+
+## 🌍 Environment
+
+| Feature | Range |
+|--------|------|
+| Cars North-South | 0 – 20 |
+| Cars East-West | 0 – 20 |
+| Green duration | 5s – 60s |
+| Average wait time | Dynamic |
+
+---
+
+## 🎮 Action Space
+
+| Action | Effect |
+|--------|--------|
+| 0 | Keep current signal |
+| 1 | Increase green time (+5s) |
+| 2 | Decrease green time (-5s) |
+
+---
+
+## 🎯 Reward Function
+
+The reward is designed to optimize traffic flow:
+
+- Minimize average waiting time
+- Maximize throughput
+- Maintain balance between queues
+
+---
+
+## 📁 Project Structure
+
+```bash
 traffic_signal_rl/
-│
-├── run_qlearning.py           # Q-Learning entry point (baseline stage)
-├── run_dqn.py                 # DQN entry point (advanced stage)
-│
+
+├── run_qlearning.py        # Baseline training
+├── run_dqn.py              # DQN training
+
 ├── environment/
-│   ├── _init_.py
-│   └── traffic_env.py         # Custom traffic simulation environment
-│
+│   └── traffic_env.py      # Custom traffic simulation
+
 ├── agents/
-│   ├── _init_.py
-│   ├── q_learning_agent.py    # Tabular Q-Learning implementation
-│   └── dqn_agent.py           # DQN + Double DQN agent
-│
+│   ├── q_learning_agent.py
+│   └── dqn_agent.py
+
 ├── training/
-│   ├── _init_.py
-│   ├── train_qlearning.py     # Q-Learning training loop
-│   └── train_dqn.py           # DQN training loop
-│
+│   ├── train_qlearning.py
+│   └── train_dqn.py
+
 ├── analysis/
-│   ├── _init_.py
 │   ├── metrics.py
 │   ├── visualization.py
 │   └── refinement_logger.py
-│
+
 ├── models/
-│   ├── q_table.pkl            # Trained Q-Learning model
-│   └── dqn_final.pt           # Trained DQN model
-│
+│   ├── q_table.pkl
+│   └── dqn_final.pt
+
 ├── results/
-│   ├── q_learning/            # Q-Learning outputs
-│   └── dqn/                   # DQN outputs
-│
-├── requirements.txt
-└── .gitignore
+│   ├── q_learning/
+│   └── dqn/
+
+└── requirements.txt
 
 
 ---
 
-🌍 Environment
+📊 Results Summary
 
-Feature	Range
+🟡 Q-Learning (Baseline)
 
-Cars North-South	0 – 20
-Cars East-West	0 – 20
-Green duration	5s – 60s
-Average wait time	dynamic
+Fast convergence
 
+Works well for small state space
 
-🎮 Actions
-
-Action	Effect
-
-0	Keep green duration
-1	Increase +5s
-2	Decrease -5s
+Limited scalability
 
 
-🎯 Reward Function
+🔵 DQN (Advanced)
 
-reward = -avg_wait + throughput_bonus * cars_served - balance_penalty * queue_imbalance
+Better long-term reward optimization
 
+Handles larger state space efficiently
 
----
-
-🧠 1. Q-Learning (Baseline Phase - First Implementation)
-
-📌 Overview
-
-First algorithm implemented in the project
-
-Used as a baseline reinforcement learning model
-
-Helps understand environment dynamics and reward behavior
-
-Uses tabular learning with discretized state space
-
-
-⚙️ Key Features
-
-Epsilon-greedy exploration
-
-Q-table update using Bellman equation
-
-State discretization
-
-Policy extraction and visualization
-
-Stability analysis
-
-
-
----
-
-🧠 2. Deep Q-Network (DQN) (Advanced Phase)
-
-📌 Overview
-
-Built after Q-Learning for performance improvement
-
-Handles continuous state space efficiently
-
-More scalable and stable learning approach
-
-
-⚙️ Key Features
-
-Double DQN architecture
-
-Experience replay buffer
-
-Target network updates
-
-Reward normalization
-
-Stable convergence techniques
+More stable policy learning
 
 
 
@@ -145,36 +142,22 @@ pip install -r requirements.txt
 
 ---
 
-🚀 Usage
+🚀 How to Run
 
-▶ Run Q-Learning (Baseline Stage)
+▶ Q-Learning
 
 python run_qlearning.py
 
-▶ Run DQN (Advanced Stage)
+▶ DQN
 
 python run_dqn.py
 
 
 ---
 
-📊 Results Comparison
+📈 Outputs
 
-Metric	Q-Learning (Baseline)	DQN (Advanced)
-
-Learning Type	Tabular	Deep Neural Network
-Performance	Moderate	Higher
-Stability	Medium	High
-Scalability	Limited	Strong
-Training Time	Fast	Longer
-
-
-
----
-
-📂 Outputs
-
-🟡 Q-Learning Outputs
+Q-Learning
 
 Learning curve
 
@@ -182,12 +165,10 @@ Epsilon decay
 
 Policy heatmap
 
-Q-table
-
-Stability analysis
+Q-table analysis
 
 
-🔵 DQN Outputs
+DQN
 
 Reward curve
 
@@ -195,19 +176,38 @@ Loss curve
 
 Policy visualization
 
-Stability analysis
-
 Trained model (.pt)
 
 
 
 ---
 
-👥 Team
+👥 Team Contribution
 
 Role	Responsibility
 
-Engineer 1	Environment design and simulation
-Engineer 2	Q-Learning implementation and analysis (First Phase)
-Engineer 3	DQN implementation and training
-Engineer 4	Integration, evaluation, and reporting
+Engineer 1	Environment design
+Engineer 2	Q-Learning + analysis
+Engineer 3	DQN implementation
+Engineer 4	Evaluation & reporting
+
+
+
+---
+
+💡 Key Insight
+
+Q-Learning works as a strong baseline for understanding environment dynamics, while DQN significantly improves performance in more complex and continuous state spaces.
+
+
+---
+
+📌 Tech Stack
+
+Python
+
+PyTorch
+
+NumPy
+
+Matplotlib
