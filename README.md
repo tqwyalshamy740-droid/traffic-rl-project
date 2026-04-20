@@ -5,137 +5,213 @@
 ![RL](https://img.shields.io/badge/Reinforcement%20Learning-DQN-green)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
 
-A reinforcement learning project that trains a DQN agent to control traffic signals at a single intersection, minimizing vehicle waiting time and maximizing throughput.
+A reinforcement learning project for optimizing traffic signal control at a single intersection using a two-stage approach:
+
+1. Tabular Q-Learning (baseline + analysis)
+
+
+2. Deep Q-Network (DQN) (advanced solution)
+
+
+
+Q-Learning was implemented first to build a baseline understanding of the environment and policy behavior, followed by a more advanced DQN model for improved performance and scalability.
+
 
 ---
 
-## 📁 Project Structure
+📁 Project Structure
 
-```
 traffic_signal_rl/
 │
-├── run_dqn.py                  # Main entry point
+├── run_qlearning.py           # Q-Learning entry point (baseline stage)
+├── run_dqn.py                 # DQN entry point (advanced stage)
 │
 ├── environment/
-│   ├── __init__.py
-│   └── traffic_env.py          # Custom traffic simulation environment
+│   ├── _init_.py
+│   └── traffic_env.py         # Custom traffic simulation environment
 │
 ├── agents/
-│   ├── __init__.py
-│   └── dqn_agent.py            # DQN + Double DQN agent
+│   ├── _init_.py
+│   ├── q_learning_agent.py    # Tabular Q-Learning implementation
+│   └── dqn_agent.py           # DQN + Double DQN agent
 │
 ├── training/
-│   ├── __init__.py
-│   └── train_dqn.py            # Training loop
+│   ├── _init_.py
+│   ├── train_qlearning.py     # Q-Learning training loop
+│   └── train_dqn.py           # DQN training loop
 │
 ├── analysis/
-│   ├── __init__.py
-│   ├── metrics.py              # Evaluation metrics
-│   ├── visualization_dqn.py    # Plots and visualizations
-│   └── refinement_logger.py    # CSV refinement logger
+│   ├── _init_.py
+│   ├── metrics.py
+│   ├── visualization.py
+│   └── refinement_logger.py
+│
+├── models/
+│   ├── q_table.pkl            # Trained Q-Learning model
+│   └── dqn_final.pt           # Trained DQN model
+│
+├── results/
+│   ├── q_learning/            # Q-Learning outputs
+│   └── dqn/                   # DQN outputs
 │
 ├── requirements.txt
 └── .gitignore
-```
+
 
 ---
 
-## 🌍 Environment
+🌍 Environment
 
-**State (4 values):**
-| Feature | Range |
-|---|---|
-| Cars waiting North-South | 0 – 20 |
-| Cars waiting East-West | 0 – 20 |
-| Current green duration | 5s – 60s |
-| Average waiting time | 0 – max |
+Feature	Range
 
-**Actions (Discrete):**
-| Action | Effect |
-|---|---|
-| 0 | Keep green duration |
-| 1 | Increase green by 5s |
-| 2 | Decrease green by 5s |
+Cars North-South	0 – 20
+Cars East-West	0 – 20
+Green duration	5s – 60s
+Average wait time	dynamic
 
-**Reward:**
-```
+
+🎮 Actions
+
+Action	Effect
+
+0	Keep green duration
+1	Increase +5s
+2	Decrease -5s
+
+
+🎯 Reward Function
+
 reward = -avg_wait + throughput_bonus * cars_served - balance_penalty * queue_imbalance
-```
+
 
 ---
 
-## 🧠 Algorithm
+🧠 1. Q-Learning (Baseline Phase - First Implementation)
 
-**Deep Q-Network (DQN)** with the following improvements:
-- Double DQN to reduce overestimation bias
-- Experience replay buffer (20,000 transitions)
-- Target network updated every 500 steps
-- Observation normalization to [0, 1]
-- Reward scaling (÷ 50) for stable training
-- Per-episode epsilon decay
+📌 Overview
 
-**Hyperparameters:**
-| Parameter | Value |
-|---|---|
-| Learning rate | 0.0005 |
-| Gamma (discount) | 0.99 |
-| Epsilon start | 1.0 |
-| Epsilon min | 0.05 |
-| Epsilon decay | 0.990 per episode |
-| Batch size | 128 |
-| Hidden size | 256 |
-| Episodes | 500 |
+First algorithm implemented in the project
+
+Used as a baseline reinforcement learning model
+
+Helps understand environment dynamics and reward behavior
+
+Uses tabular learning with discretized state space
+
+
+⚙️ Key Features
+
+Epsilon-greedy exploration
+
+Q-table update using Bellman equation
+
+State discretization
+
+Policy extraction and visualization
+
+Stability analysis
+
+
 
 ---
 
-## ⚙️ Installation
+🧠 2. Deep Q-Network (DQN) (Advanced Phase)
 
-```bash
+📌 Overview
+
+Built after Q-Learning for performance improvement
+
+Handles continuous state space efficiently
+
+More scalable and stable learning approach
+
+
+⚙️ Key Features
+
+Double DQN architecture
+
+Experience replay buffer
+
+Target network updates
+
+Reward normalization
+
+Stable convergence techniques
+
+
+
+---
+
+⚙️ Installation
+
 pip install -r requirements.txt
-```
+
 
 ---
 
-## 🚀 Usage
+🚀 Usage
 
-```bash
+▶ Run Q-Learning (Baseline Stage)
+
+python run_qlearning.py
+
+▶ Run DQN (Advanced Stage)
+
 python run_dqn.py
-```
 
-Results are saved to `results/` and the trained model to `models/dqn_final.pt`.
 
 ---
 
-## 📊 Results
+📊 Results Comparison
 
-| Metric | Value |
-|---|---|
-| Final Avg Reward | ~750 – 950 |
-| Convergence Episode | ~50 |
-| Stability (std dev) | ~144 |
+Metric	Q-Learning (Baseline)	DQN (Advanced)
 
-> Note: Some variance between runs is expected due to environment stochasticity.
+Learning Type	Tabular	Deep Neural Network
+Performance	Moderate	Higher
+Stability	Medium	High
+Scalability	Limited	Strong
+Training Time	Fast	Longer
 
----
 
-## 📂 Output Files
-
-| File | Description |
-|---|---|
-| `results/dqn_learning_curve.png` | Reward per episode with moving average |
-| `results/dqn_qvalues.png` | Q-values heatmap across states |
-| `results/dqn_policy.png` | Learned policy visualization |
-| `results/dqn_stability.png` | Reward variance across 10 runs |
-| `results/dqn_refinement_log.csv` | Experiment log |
-| `models/dqn_final.pt` | Trained model weights |
 
 ---
 
-## 👥 Team
+📂 Outputs
 
-| Role | Responsibility |
-|---|---|
-| Engineer 1 | Environment design and simulation |
-| Engineer 2 | Q-Learning implementation and analysis |
-| Engineer 3 | DQN implementation and training |
-| Engineer 4 | Integration, evaluation, and report writing |
+🟡 Q-Learning Outputs
+
+Learning curve
+
+Epsilon decay
+
+Policy heatmap
+
+Q-table
+
+Stability analysis
+
+
+🔵 DQN Outputs
+
+Reward curve
+
+Loss curve
+
+Policy visualization
+
+Stability analysis
+
+Trained model (.pt)
+
+
+
+---
+
+👥 Team
+
+Role	Responsibility
+
+Engineer 1	Environment design and simulation
+Engineer 2	Q-Learning implementation and analysis (First Phase)
+Engineer 3	DQN implementation and training
+Engineer 4	Integration, evaluation, and reporting
