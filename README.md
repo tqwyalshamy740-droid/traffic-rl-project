@@ -1,10 +1,15 @@
-# Traffic Signal Control using Reinforcement Learning
+# 🚦 Traffic Signal Control using Reinforcement Learning
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?logo=pytorch&logoColor=white)
+![RL](https://img.shields.io/badge/Reinforcement%20Learning-DQN-green)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
 
 A reinforcement learning project that trains a DQN agent to control traffic signals at a single intersection, minimizing vehicle waiting time and maximizing throughput.
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 traffic_signal_rl/
@@ -35,7 +40,7 @@ traffic_signal_rl/
 
 ---
 
-## Environment
+## 🌍 Environment
 
 **State (4 values):**
 | Feature | Range |
@@ -59,7 +64,7 @@ reward = -avg_wait + throughput_bonus * cars_served - balance_penalty * queue_im
 
 ---
 
-## Algorithm
+## 🧠 Algorithm
 
 **Deep Q-Network (DQN)** with the following improvements:
 - Double DQN to reduce overestimation bias
@@ -83,7 +88,7 @@ reward = -avg_wait + throughput_bonus * cars_served - balance_penalty * queue_im
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 ```bash
 pip install -r requirements.txt
@@ -91,7 +96,7 @@ pip install -r requirements.txt
 
 ---
 
-## Usage
+## 🚀 Usage
 
 ```bash
 python run_dqn.py
@@ -101,7 +106,7 @@ Results are saved to `results/` and the trained model to `models/dqn_final.pt`.
 
 ---
 
-## Results
+## 📊 Results
 
 | Metric | Value |
 |---|---|
@@ -113,7 +118,7 @@ Results are saved to `results/` and the trained model to `models/dqn_final.pt`.
 
 ---
 
-## Output Files
+## 📂 Output Files
 
 | File | Description |
 |---|---|
@@ -126,7 +131,7 @@ Results are saved to `results/` and the trained model to `models/dqn_final.pt`.
 
 ---
 
-## Team
+## 👥 Team
 
 | Role | Responsibility |
 |---|---|
