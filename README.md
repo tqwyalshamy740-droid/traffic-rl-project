@@ -1,5 +1,10 @@
 🚦 Traffic Signal Control using Reinforcement Learning
 
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-EE4C2C?logo=pytorch&logoColor=white)
+![RL](https://img.shields.io/badge/Reinforcement%20Learning-DQN-green)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen)
+
 A reinforcement learning project for optimizing traffic signal control at a single intersection using a two-stage approach:
 
 - 🟡 Tabular Q-Learning (baseline + behavioral analysis)
@@ -22,7 +27,7 @@ This project explores how reinforcement learning can dynamically control traffic
 
 Used as an initial approach to understand environment dynamics.
 
-*Key Features:*
+Key Features:
 - Tabular Q-learning
 - Discretized state space
 - Epsilon-greedy exploration
@@ -35,7 +40,7 @@ Used as an initial approach to understand environment dynamics.
 
 Designed to handle continuous state space and improve scalability.
 
-*Key Features:*
+Key Features:
 - Deep neural network approximation
 - Experience replay buffer
 - Target network updates
@@ -198,5 +203,3 @@ Engineer 4	Evaluation & reporting
 💡 Key Insight
 
 Q-Learning works as a strong baseline for understanding environment dynamics, while DQN significantly improves performance in more complex and continuous state spaces.
-
-Matplotlib
