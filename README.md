@@ -8,11 +8,7 @@
 A reinforcement learning project for optimizing traffic signal control at a single intersection using a two-stage approach:
 
 1. Tabular Q-Learning (baseline + analysis)
-
-
 2. Deep Q-Network (DQN) (advanced solution)
-
-
 
 Q-Learning was implemented first to build a baseline understanding of the environment and policy behavior, followed by a more advanced DQN model for improved performance and scalability.
 
