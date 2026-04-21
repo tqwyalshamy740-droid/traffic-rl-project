@@ -1,5 +1,5 @@
 from environment.traffic_env import TrafficEnv
-from agents.q_learning_agent import QLearningAgent
+from agents.Qlearning_agent import QLearningAgent
 
 
 def train(episodes=1500):
