@@ -10,7 +10,7 @@ Tracks:
 """
 
 from traffic_env import TrafficEnv
-from qlearning_agent import QLearningAgent
+from agents.qlearning_agent import QLearningAgent
 import pickle
 
 
