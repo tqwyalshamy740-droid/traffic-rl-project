@@ -13,7 +13,7 @@ class QLearningAgent:
     Suitable for discrete / discretized environments.
     """
 
-    def _init_(self, state_bins=5, actions=3,
+    def __init__(self, state_bins=5, actions=3,
                  alpha=0.1, gamma=0.9,
                  epsilon=1.0, epsilon_decay=0.99, min_epsilon=0.01):
 
