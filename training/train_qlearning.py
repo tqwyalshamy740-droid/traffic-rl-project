@@ -39,10 +39,16 @@ def print_metrics(metrics, algorithm_name="Q-Learning"):
     print(f"\n{'='*50}")
     print(f"📊 {algorithm_name} Evaluation Metrics")
     print(f"{'='*50}")
-    print(f"Sample Efficiency (episodes to reach {REWARD_THRESHOLD}): {metrics['sample_efficiency']}")
-    print(f"Final Performance (avg last {FINAL_WINDOW} episodes): {metrics['final_performance']:.2f}")
+    print(
+        f"Sample Efficiency (episodes to reach {REWARD_THRESHOLD}): {metrics['sample_efficiency']}"
+    )
+    print(
+        f"Final Performance (avg last {FINAL_WINDOW} episodes): {metrics['final_performance']:.2f}"
+    )
     print(f"Convergence Speed (timesteps): {metrics['convergence_speed']:.0f}")
-    print(f"Stability (std dev last {FINAL_WINDOW} episodes): {metrics['stability']:.4f}")
+    print(
+        f"Stability (std dev last {FINAL_WINDOW} episodes): {metrics['stability']:.4f}"
+    )
     print(f"{'='*50}\n")
 
 
@@ -72,7 +78,9 @@ def train(episodes=500):
 
         if (ep + 1) % 50 == 0:
             avg = np.mean(rewards_history[-50:])
-            print(f"Episode {ep+1}/{episodes} | Avg Reward: {avg:.2f} | Epsilon: {agent.epsilon:.4f}")
+            print(
+                f"Episode {ep+1}/{episodes} | Avg Reward: {avg:.2f} | Epsilon: {agent.epsilon:.4f}"
+            )
 
     os.makedirs("results", exist_ok=True)
     os.makedirs("models", exist_ok=True)
