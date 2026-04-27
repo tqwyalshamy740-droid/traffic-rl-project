@@ -49,6 +49,25 @@ Key Features:
 
 ---
 
+### 3️⃣ Final Comparison (Q-Learning vs DQN)
+Final comparison was performed using `analysis/compare&evaluate.py` with the required metrics:
+- Sample efficiency: episodes needed to reach reward threshold
+- Final performance: mean reward over last 50 episodes
+- Convergence speed: timesteps to reach stable policy
+- Stability: variance in final performance across independent runs
+Results:
+| Metric | Q-Learning | DQN |
+|--------|-----------:|----:|
+| Sample efficiency (episodes) | 3 | 1 |
+| Final performance (mean reward, last 50 episodes) | -1134.901 | -1111.157 |
+| Convergence speed (timesteps) | 38000 | 11400 |
+| Stability variance (across runs) | 0.000000 | 0.000000 |
+Notes:
+- DQN achieved faster learning and better final reward in this experiment.
+- Stability variance is currently zero because each algorithm was evaluated from one saved run; multiple independent runs are needed for stronger statistical stability analysis.
+---
+
+
 ## 🌍 Environment
 
 | Feature | Range |
@@ -102,7 +121,9 @@ traffic_signal_rl/
 ├── analysis/
 │   ├── metrics.py
 │   ├── visualization.py
+│   ├── compare&evaluate.py 
 │   └── refinement_logger.py
+تت
 
 ├── models/
 │   ├── q_table.pkl
