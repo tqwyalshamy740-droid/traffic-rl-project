@@ -5,7 +5,9 @@ import os
 os.makedirs("results", exist_ok=True)
 
 
-def plot_learning_curve(rewards, window=50, save_path="results/qlearning_learning_curve.png"):
+def plot_learning_curve(
+    rewards, window=50, save_path="results/qlearning_learning_curve.png"
+):
     fig, ax = plt.subplots(figsize=(14, 6))
 
     moving_avg = np.convolve(rewards, np.ones(window) / window, mode="valid")
@@ -21,7 +23,11 @@ def plot_learning_curve(rewards, window=50, save_path="results/qlearning_learnin
     )
     ax.set_xlabel("Episode", fontsize=12)
     ax.set_ylabel("Total Reward", fontsize=12)
-    ax.set_title("Q-Learning Learning Curve - Traffic Signal Control", fontsize=14, fontweight="bold")
+    ax.set_title(
+        "Q-Learning Learning Curve - Traffic Signal Control",
+        fontsize=14,
+        fontweight="bold",
+    )
     ax.legend(loc="upper left", fontsize=10)
     ax.grid(True, alpha=0.3)
 
@@ -58,7 +64,11 @@ def plot_q_values_heatmap(agent, save_path="results/qlearning_qvalues.png"):
 
     for g in range(3):
         im = axes[g].imshow(q_grid[:, :, g], cmap="RdYlGn", interpolation="nearest")
-        axes[g].set_title(f"Max Q-Value\nGreen Phase: {green_labels[g]}", fontsize=11, fontweight="bold")
+        axes[g].set_title(
+            f"Max Q-Value\nGreen Phase: {green_labels[g]}",
+            fontsize=11,
+            fontweight="bold",
+        )
         axes[g].set_xlabel("EW Traffic Bin", fontsize=10)
         axes[g].set_ylabel("NS Traffic Bin", fontsize=10)
         plt.colorbar(im, ax=axes[g])
@@ -82,7 +92,9 @@ def plot_policy(agent, save_path="results/qlearning_policy.png"):
     cmap = plt.cm.get_cmap("Set1", 3)
 
     plt.figure(figsize=(8, 7))
-    img = plt.imshow(policy_grid, cmap=cmap, vmin=-0.5, vmax=2.5, interpolation="nearest")
+    img = plt.imshow(
+        policy_grid, cmap=cmap, vmin=-0.5, vmax=2.5, interpolation="nearest"
+    )
 
     cbar = plt.colorbar(img, shrink=0.8, ticks=[0, 1, 2])
     cbar.set_ticklabels(["0 — Keep", "1 — Increase +5s", "2 — Decrease -5s"])
@@ -93,7 +105,9 @@ def plot_policy(agent, save_path="results/qlearning_policy.png"):
         action_counts[int(v)] += 1
     total = 25
     patches = [
-        mpatches.Patch(color=cmap(i), label=f"Action {i}: {action_counts[i]/total*100:.1f}%")
+        mpatches.Patch(
+            color=cmap(i), label=f"Action {i}: {action_counts[i]/total*100:.1f}%"
+        )
         for i in range(3)
     ]
     plt.legend(handles=patches, loc="lower right", fontsize=10)
@@ -107,8 +121,11 @@ def plot_policy(agent, save_path="results/qlearning_policy.png"):
     print(f"✅ Policy visualization saved to {save_path}")
 
 
-def plot_stability(rewards, runs=5, window=50, save_path="results/qlearning_stability.png"):
+def plot_stability(
+    rewards, runs=5, window=50, save_path="results/qlearning_stability.png"
+):
     import sys
+
     sys.path.insert(0, ".")
     from environment.traffic_env import TrafficEnv
     from agents.qlearning_agent import QLearningAgent
@@ -149,11 +166,21 @@ def plot_stability(rewards, runs=5, window=50, save_path="results/qlearning_stab
         color="green",
         label="±1 Std Dev",
     )
-    plt.plot(episodes_range, mean_rewards, linewidth=2.5, color="darkgreen", label="Mean Reward")
+    plt.plot(
+        episodes_range,
+        mean_rewards,
+        linewidth=2.5,
+        color="darkgreen",
+        label="Mean Reward",
+    )
 
     plt.xlabel("Episode", fontsize=12)
     plt.ylabel("Total Reward", fontsize=12)
-    plt.title(f"Q-Learning Stability Plot ({runs} Independent Runs)", fontsize=14, fontweight="bold")
+    plt.title(
+        f"Q-Learning Stability Plot ({runs} Independent Runs)",
+        fontsize=14,
+        fontweight="bold",
+    )
     plt.legend(fontsize=10)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
