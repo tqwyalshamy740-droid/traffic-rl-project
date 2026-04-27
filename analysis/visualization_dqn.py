@@ -80,7 +80,11 @@ def plot_q_values_heatmap(
     vmax = all_vals.max() if len(all_vals) > 0 else 0
 
     fig, axes = plt.subplots(1, 3, figsize=(16, 5))
-    action_labels = ["Action 0: Keep", "Action 1: Increase +5s", "Action 2: Decrease -5s"]
+    action_labels = [
+        "Action 0: Keep",
+        "Action 1: Increase +5s",
+        "Action 2: Decrease -5s",
+    ]
 
     for a in range(3):
         im = axes[a].imshow(
@@ -108,7 +112,9 @@ def plot_q_values_heatmap(
     print(f"✅ Q-values heatmap saved to {save_path}")
 
 
-def plot_policy_visualization(agent, env, grid_size=20, save_path="results/dqn_policy.png"):
+def plot_policy_visualization(
+    agent, env, grid_size=20, save_path="results/dqn_policy.png"
+):
     import matplotlib.patches as mpatches
     from matplotlib.colors import BoundaryNorm
 
@@ -178,9 +184,7 @@ def plot_stability(
             step_count = 0
 
             while not done and step_count < 1000:
-                state_tensor = (
-                    torch.FloatTensor(state).unsqueeze(0).to(agent.device)
-                )
+                state_tensor = torch.FloatTensor(state).unsqueeze(0).to(agent.device)
                 with torch.no_grad():
                     q_values = agent.main_network(state_tensor)
                 action = q_values.argmax(dim=1).item()
