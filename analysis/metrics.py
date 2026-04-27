@@ -42,8 +42,14 @@ def print_metrics(metrics, algorithm_name="DQN"):
     print(f"\n{'='*50}")
     print(f"📊 {algorithm_name} Evaluation Metrics")
     print(f"{'='*50}")
-    print(f"Sample Efficiency (episodes to reach {REWARD_THRESHOLD}): {metrics['sample_efficiency']}")
-    print(f"Final Performance (avg last {FINAL_WINDOW} episodes): {metrics['final_performance']:.2f}")
+    print(
+        f"Sample Efficiency (episodes to reach {REWARD_THRESHOLD}): {metrics['sample_efficiency']}"
+    )
+    print(
+        f"Final Performance (avg last {FINAL_WINDOW} episodes): {metrics['final_performance']:.2f}"
+    )
     print(f"Convergence Speed (timesteps): {metrics['convergence_speed']:.0f}")
-    print(f"Stability (std dev last {FINAL_WINDOW} episodes): {metrics['stability']:.4f}")
+    print(
+        f"Stability (std dev last {FINAL_WINDOW} episodes): {metrics['stability']:.4f}"
+    )
     print(f"{'='*50}\n")
