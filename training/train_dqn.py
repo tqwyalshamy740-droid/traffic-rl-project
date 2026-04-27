@@ -69,9 +69,7 @@ def train_dqn(env, agent, episodes=500, max_steps=1000, normalize_obs=True):
 
 
 if __name__ == "__main__":
-    env = TrafficEnv(
-        max_steps=200, throughput_bonus_weight=2.0, reward_balance_weight=0.1
-    )
+    env = TrafficEnv(max_steps=200)
     agent = DQNAgent(
         state_size=4,
         action_size=3,
