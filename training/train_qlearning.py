@@ -37,7 +37,7 @@ def compute_stability(rewards, window=FINAL_WINDOW):
 
 def print_metrics(metrics, algorithm_name="Q-Learning"):
     print(f"\n{'='*50}")
-    print(f"📊 {algorithm_name} Evaluation Metrics")
+    print(f"{algorithm_name} Evaluation Metrics")
     print(f"{'='*50}")
     print(
         f"Sample Efficiency (episodes to reach {REWARD_THRESHOLD}): {metrics['sample_efficiency']}"
