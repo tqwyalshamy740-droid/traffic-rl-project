@@ -34,7 +34,7 @@ def plot_learning_curve(
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"✅ Learning curve saved to {save_path}")
+    print(f"Learning curve saved to {save_path}")
 
 
 def plot_epsilon(epsilon_history, save_path="results/qlearning_epsilon.png"):
@@ -47,7 +47,7 @@ def plot_epsilon(epsilon_history, save_path="results/qlearning_epsilon.png"):
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"✅ Epsilon decay saved to {save_path}")
+    print(f"Epsilon decay saved to {save_path}")
 
 
 def plot_q_values_heatmap(agent, save_path="results/qlearning_qvalues.png"):
@@ -77,7 +77,7 @@ def plot_q_values_heatmap(agent, save_path="results/qlearning_qvalues.png"):
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"✅ Q-values heatmap saved to {save_path}")
+    print(f"Q-values heatmap saved to {save_path}")
 
 
 def plot_policy(agent, save_path="results/qlearning_policy.png"):
@@ -118,7 +118,7 @@ def plot_policy(agent, save_path="results/qlearning_policy.png"):
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"✅ Policy visualization saved to {save_path}")
+    print(f"Policy visualization saved to {save_path}")
 
 
 def plot_stability(
@@ -186,11 +186,11 @@ def plot_stability(
     plt.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close()
-    print(f"✅ Stability plot saved to {save_path}")
+    print(f"Stability plot saved to {save_path}")
 
 
 def generate_all_visualizations(agent, rewards, epsilon_history):
-    print("\n📊 Generating Q-Learning Visualizations...")
+    print("\nGenerating Q-Learning Visualizations...")
     print("-" * 50)
 
     plot_learning_curve(rewards)
@@ -200,4 +200,4 @@ def generate_all_visualizations(agent, rewards, epsilon_history):
     plot_stability(rewards)
 
     print("-" * 50)
-    print("✅ All visualizations completed!")
+    print("All visualizations completed!")
